@@ -1,0 +1,1716 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quant Final Round Question Bank</title>
+  <meta name="description" content="Quant interview final-round question bank with filters, themes, difficulty sorting, and progress analytics." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #f6f4ea;
+      --panel: #fffef9;
+      --ink: #102a43;
+      --muted: #52606d;
+      --line: #d9e2ec;
+      --accent: #0ea5a3;
+      --accent-2: #f97316;
+      --accent-soft: #ccfbf1;
+      --hard: #ef4444;
+      --very-hard: #b91c1c;
+      --easy: #16a34a;
+      --medium: #0ea5e9;
+      --radius: 14px;
+      --shadow: 0 12px 30px rgba(15, 23, 42, 0.1);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", "Avenir Next", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 10% 10%, #dbeafe 0%, transparent 30%),
+        radial-gradient(circle at 92% 7%, #fed7aa 0%, transparent 26%),
+        radial-gradient(circle at 82% 84%, #ccfbf1 0%, transparent 28%),
+        var(--bg);
+      min-height: 100vh;
+      line-height: 1.45;
+    }
+
+    .page {
+      width: min(1200px, 94vw);
+      margin: 1.2rem auto 3rem;
+      animation: fade-in 420ms ease;
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .masthead {
+      background: linear-gradient(120deg, #ffffff 0%, #f0fdfa 55%, #ffedd5 100%);
+      border: 1px solid var(--line);
+      border-radius: calc(var(--radius) + 4px);
+      box-shadow: var(--shadow);
+      padding: 1.1rem 1.1rem 0.9rem;
+      display: grid;
+      gap: 0.9rem;
+      position: sticky;
+      top: 0.65rem;
+      z-index: 20;
+      backdrop-filter: blur(6px);
+    }
+
+    .top-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .title-wrap h1 {
+      margin: 0;
+      font-size: clamp(1.25rem, 2.5vw, 2.1rem);
+      letter-spacing: -0.02em;
+    }
+
+    .title-wrap p {
+      margin: 0.25rem 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 78ch;
+    }
+
+    .stats-mini {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(74px, auto));
+      gap: 0.55rem;
+      font-size: 0.86rem;
+    }
+
+    .stat {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel);
+      padding: 0.5rem 0.6rem;
+      text-align: center;
+    }
+
+    .stat .n {
+      display: block;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--accent);
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-tabs button {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 0.5rem 0.95rem;
+      font-family: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .nav-tabs button:hover { transform: translateY(-1px); border-color: var(--accent); }
+    .nav-tabs button.active {
+      background: var(--ink);
+      color: #f8fafc;
+      border-color: var(--ink);
+    }
+
+    .view {
+      display: none;
+      margin-top: 1rem;
+    }
+
+    .view.active { display: block; }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1rem;
+    }
+
+    .home-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 1rem;
+    }
+
+    .hero h2 {
+      margin: 0;
+      font-size: clamp(1.1rem, 2.2vw, 1.75rem);
+      letter-spacing: -0.01em;
+    }
+
+    .hero p {
+      margin: 0.6rem 0 0;
+      color: var(--muted);
+      max-width: 66ch;
+    }
+
+    .hero-actions {
+      margin-top: 0.95rem;
+      display: flex;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 1px solid var(--line);
+      background: #ffffff;
+      color: var(--ink);
+      border-radius: 10px;
+      padding: 0.52rem 0.86rem;
+      font-family: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn.primary {
+      background: linear-gradient(120deg, #0f766e 0%, #0ea5a3 100%);
+      color: #f0fdfa;
+      border-color: #0f766e;
+    }
+
+    .theme-buttons {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.55rem;
+    }
+
+    .theme-buttons button {
+      text-align: left;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #fff 0%, #f8fafc 100%);
+      border-radius: 10px;
+      padding: 0.72rem 0.7rem;
+      font-family: inherit;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .theme-buttons button .name {
+      display: block;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 0.14rem;
+    }
+
+    .theme-buttons button .count {
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-family: "IBM Plex Mono", monospace;
+    }
+
+    .theme-buttons button:hover { border-color: var(--accent); transform: translateY(-1px); }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1.3fr repeat(3, minmax(120px, 1fr));
+      gap: 0.56rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .control {
+      display: grid;
+      gap: 0.2rem;
+    }
+
+    .control label {
+      color: var(--muted);
+      font-size: 0.76rem;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    input[type="search"],
+    select {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.53rem 0.62rem;
+      font-size: 0.93rem;
+      font-family: inherit;
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .sub-toolbar {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.8rem;
+    }
+
+    .chip {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 0.38rem 0.72rem;
+      font-size: 0.8rem;
+      font-family: "IBM Plex Mono", monospace;
+      color: var(--muted);
+    }
+
+    .question-list {
+      display: grid;
+      gap: 0.7rem;
+    }
+
+    .question-card {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, #fff 0%, #fcfdfd 100%);
+      border-radius: 12px;
+      padding: 0.85rem;
+      display: grid;
+      gap: 0.64rem;
+      opacity: 0;
+      transform: translateY(6px);
+      animation: rise-in 260ms ease forwards;
+    }
+
+    @keyframes rise-in {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .question-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.9rem;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      align-items: center;
+      font-size: 0.76rem;
+      color: var(--muted);
+    }
+
+    .pill {
+      font-family: "IBM Plex Mono", monospace;
+      border-radius: 999px;
+      padding: 0.18rem 0.5rem;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: #334e68;
+      white-space: nowrap;
+    }
+
+    .pill.diff-Easy { border-color: #86efac; color: #166534; background: #f0fdf4; }
+    .pill.diff-Medium { border-color: #7dd3fc; color: #075985; background: #f0f9ff; }
+    .pill.diff-Hard { border-color: #fca5a5; color: #991b1b; background: #fff1f2; }
+    .pill.diff-VeryHard { border-color: #f87171; color: #7f1d1d; background: #fee2e2; }
+
+    .qtext {
+      font-size: 0.98rem;
+      color: #1f2937;
+      line-height: 1.56;
+      word-wrap: break-word;
+      overflow-wrap: anywhere;
+    }
+
+    .qtext .latex-label {
+      display: inline-block;
+      margin-bottom: 0.35rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+    }
+
+    .card-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.65rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .solution-details {
+      border: 1px dashed var(--line);
+      border-radius: 10px;
+      background: #fcfdff;
+      padding: 0.45rem 0.55rem;
+    }
+
+    .solution-details summary {
+      cursor: pointer;
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: #334e68;
+      list-style: none;
+    }
+
+    .solution-details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .solution-body {
+      margin-top: 0.45rem;
+      color: #243b53;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+    }
+
+    .done-toggle {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #fff;
+      color: #1e293b;
+      padding: 0.34rem 0.58rem;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.42rem;
+    }
+
+    .done-toggle input {
+      width: 0.95rem;
+      height: 0.95rem;
+      accent-color: var(--accent);
+      margin: 0;
+    }
+
+    .empty {
+      border: 1px dashed var(--line);
+      border-radius: 12px;
+      background: #fff;
+      padding: 1rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.9rem;
+    }
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin-top: 0.7rem;
+    }
+
+    .course-card {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: linear-gradient(180deg, #fff 0%, #f8fbff 100%);
+      padding: 0.75rem;
+      display: grid;
+      gap: 0.48rem;
+    }
+
+    .course-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.55rem;
+    }
+
+    .course-title {
+      font-weight: 700;
+      font-size: 0.96rem;
+      color: #1e293b;
+    }
+
+    .course-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border-radius: 999px;
+      padding: 0.2rem 0.5rem;
+      border: 1px solid var(--line);
+      color: #155e75;
+      background: #ecfeff;
+      white-space: nowrap;
+    }
+
+    .course-badge.mastered {
+      color: #14532d;
+      background: #f0fdf4;
+      border-color: #86efac;
+    }
+
+    .course-meta {
+      color: var(--muted);
+      font-size: 0.8rem;
+      font-family: "IBM Plex Mono", monospace;
+    }
+
+    .course-actions {
+      display: flex;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+      margin-top: 0.1rem;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.65rem;
+    }
+
+    .metric {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.72rem;
+      text-align: center;
+    }
+
+    .metric .label {
+      display: block;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--muted);
+    }
+
+    .metric .value {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-top: 0.2rem;
+    }
+
+    .progress-wrap {
+      margin-top: 0.8rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      overflow: hidden;
+      height: 14px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #0ea5a3 0%, #f97316 100%);
+      transition: width 240ms ease;
+    }
+
+    .bars {
+      display: grid;
+      gap: 0.5rem;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.45rem;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    .bar-row .name {
+      color: #334e68;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .bar {
+      grid-column: 1 / -1;
+      height: 10px;
+      border-radius: 999px;
+      background: #e6ecf2;
+      overflow: hidden;
+    }
+
+    .bar .fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #0ea5a3 0%, #14b8a6 100%);
+    }
+
+    .analytics-actions {
+      margin-top: 0.8rem;
+      display: flex;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+    }
+
+    .dopamine-grid {
+      margin-top: 0.95rem;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(95px, 1fr));
+      gap: 0.5rem;
+    }
+
+    .dopamine-stat {
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 10px;
+      padding: 0.55rem 0.6rem;
+      text-align: center;
+    }
+
+    .dopamine-stat .label {
+      display: block;
+      font-size: 0.69rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      font-weight: 700;
+      font-family: "IBM Plex Mono", monospace;
+    }
+
+    .dopamine-stat .value {
+      display: block;
+      margin-top: 0.16rem;
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .level-track {
+      margin-top: 0.6rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      overflow: hidden;
+      height: 10px;
+      background: #fff;
+    }
+
+    .level-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, #10b981 0%, #0ea5e9 100%);
+      transition: width 280ms ease;
+    }
+
+    .level-caption {
+      margin-top: 0.34rem;
+      font-size: 0.76rem;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+    }
+
+    .recommend-box {
+      margin-top: 0.74rem;
+      border: 1px dashed var(--line);
+      border-radius: 10px;
+      padding: 0.62rem 0.65rem;
+      background: #fcfdfd;
+      font-size: 0.86rem;
+      color: #334e68;
+      min-height: 2.3rem;
+    }
+
+    .toast {
+      position: fixed;
+      right: 0.9rem;
+      bottom: 0.9rem;
+      z-index: 80;
+      max-width: min(360px, 92vw);
+      border-radius: 12px;
+      border: 1px solid #99f6e4;
+      background: #ecfeff;
+      color: #0f172a;
+      padding: 0.62rem 0.75rem;
+      box-shadow: 0 14px 28px rgba(2, 132, 199, 0.2);
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: 0.25s ease;
+      font-size: 0.86rem;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .confetti-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 70;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      width: 7px;
+      height: 10px;
+      border-radius: 2px;
+      opacity: 0;
+      --dx: 0px;
+      animation: confetti-fall 900ms ease-out forwards;
+    }
+
+    @keyframes confetti-fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translate(var(--dx), 170px) rotate(400deg); opacity: 0; }
+    }
+
+    .pie-wrap {
+      display: grid;
+      grid-template-columns: minmax(180px, 230px) 1fr;
+      gap: 0.8rem;
+      align-items: center;
+    }
+
+    .pie-canvas {
+      width: 100%;
+      max-width: 230px;
+      aspect-ratio: 1 / 1;
+      justify-self: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: #fff;
+    }
+
+    .pie-legend {
+      display: grid;
+      gap: 0.44rem;
+    }
+
+    .pie-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6rem;
+      font-size: 0.84rem;
+    }
+
+    .pie-left {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      min-width: 0;
+    }
+
+    .swatch {
+      width: 11px;
+      height: 11px;
+      border-radius: 3px;
+      flex: 0 0 11px;
+    }
+
+    .mono { font-family: "IBM Plex Mono", monospace; }
+
+    @media (max-width: 980px) {
+      .home-grid,
+      .analytics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .controls {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .course-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .controls {
+        grid-template-columns: 1fr;
+      }
+
+      .theme-buttons {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-mini {
+        width: 100%;
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .dopamine-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .pie-wrap {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+</head>
+<body>
+  <div class="page">
+    <header class="masthead">
+      <div class="top-row">
+        <div class="title-wrap">
+          <h1>Quant Final Round Question Bank</h1>
+          <p>All extracted prep questions are sorted by theme and difficulty, with completion analytics so you can track coverage before final rounds.</p>
+        </div>
+        <div class="stats-mini" id="miniStats">
+          <div class="stat"><span class="n" id="miniTotal">0</span>Total</div>
+          <div class="stat"><span class="n" id="miniDone">0</span>Done</div>
+          <div class="stat"><span class="n" id="miniLeft">0</span>Left</div>
+        </div>
+      </div>
+      <nav class="nav-tabs" id="navTabs">
+        <button type="button" data-view="home" class="active">Home</button>
+        <button type="button" data-view="courses">Courses</button>
+        <button type="button" data-view="bank">Question Bank</button>
+        <button type="button" data-view="analytics">Analytics</button>
+      </nav>
+    </header>
+
+    <section class="view active" id="view-home">
+      <div class="home-grid">
+        <article class="panel hero">
+          <h2>Targeted Practice for Final-Round Interviews</h2>
+          <p>
+            Use theme buttons to jump straight into a focused set, mark completed questions as you go,
+            and use the analytics page to identify weak spots by theme and difficulty.
+          </p>
+          <div class="hero-actions">
+            <button class="btn primary" type="button" id="startPracticeBtn">Start Practice</button>
+            <button class="btn" type="button" id="showHardBtn">Very Hard Set</button>
+            <button class="btn" type="button" id="showUnsolvedBtn">Only Unsolved</button>
+            <button class="btn" type="button" id="recommendBtn">Recommend Next</button>
+          </div>
+          <div class="dopamine-grid" id="dopamineStats"></div>
+          <div class="level-track"><div class="level-fill" id="levelFill"></div></div>
+          <div class="level-caption" id="levelCaption"></div>
+          <div class="recommend-box" id="recommendationBox">Select "Recommend Next" to get a targeted high-impact question.</div>
+        </article>
+
+        <article class="panel">
+          <h3 style="margin-top:0;">Jump By Theme</h3>
+          <div class="theme-buttons" id="homeThemeButtons"></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="view" id="view-courses">
+      <div class="panel">
+        <h3 style="margin-top:0;">Courses (Ascending Difficulty)</h3>
+        <p style="margin-top:0.15rem; color:var(--muted);">
+          Each course uses existing questions only, ordered from Easy to Very Hard. Complete all in a course to master that topic.
+        </p>
+        <div id="courseList" class="course-grid"></div>
+      </div>
+    </section>
+
+    <section class="view" id="view-bank">
+      <div class="panel">
+        <div class="controls">
+          <div class="control">
+            <label for="searchInput">Search</label>
+            <input id="searchInput" type="search" placeholder="Search text or formula" />
+          </div>
+          <div class="control">
+            <label for="themeFilter">Theme</label>
+            <select id="themeFilter"></select>
+          </div>
+          <div class="control">
+            <label for="difficultyFilter">Difficulty</label>
+            <select id="difficultyFilter">
+              <option value="All">All</option>
+              <option value="Easy">Easy</option>
+              <option value="Medium">Medium</option>
+              <option value="Hard">Hard</option>
+              <option value="Very Hard">Very Hard</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="sortBy">Sort</label>
+            <select id="sortBy">
+              <option value="theme">Theme, then Difficulty</option>
+              <option value="difficulty">Difficulty, then Theme</option>
+              <option value="id">Import Order</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="sub-toolbar">
+          <span class="chip" id="resultChip">0 questions</span>
+          <button class="btn" type="button" id="clearFiltersBtn">Clear Filters</button>
+          <button class="btn" type="button" id="onlyUnsolvedBtn">Only Unsolved</button>
+          <button class="btn" type="button" id="onlyDoneBtn">Only Done</button>
+        </div>
+
+        <div class="question-list" id="questionList"></div>
+      </div>
+    </section>
+
+    <section class="view" id="view-analytics">
+      <div class="analytics-grid">
+        <article class="panel">
+          <h3 style="margin-top:0;">Completion Overview</h3>
+          <div class="metrics" id="analyticsOverview"></div>
+          <div class="progress-wrap" aria-label="Overall progress">
+            <div class="progress-fill" id="overallProgress"></div>
+          </div>
+          <div class="analytics-actions">
+            <button class="btn" type="button" id="resetProgressBtn">Reset Progress</button>
+            <button class="btn" type="button" id="markVisibleDoneBtn">Mark Visible As Done</button>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h3 style="margin-top:0;">By Difficulty</h3>
+          <div class="bars" id="difficultyBars"></div>
+        </article>
+
+        <article class="panel">
+          <h3 style="margin-top:0;">Completion Pie Chart</h3>
+          <div class="pie-wrap">
+            <canvas id="completionPie" class="pie-canvas" width="280" height="280"></canvas>
+            <div class="pie-legend" id="completionPieLegend"></div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h3 style="margin-top:0;">By Theme</h3>
+          <div class="bars" id="themeBars"></div>
+        </article>
+
+      </div>
+    </section>
+  </div>
+
+  <script src="./questions-data.js"></script>
+  <script>
+    (function () {
+      const questions = Array.isArray(window.QUESTION_BANK) ? window.QUESTION_BANK : [];
+      const STORAGE_KEY = 'quant_question_progress_v1';
+      const DIFF_RANK = { 'Easy': 1, 'Medium': 2, 'Hard': 3, 'Very Hard': 4 };
+      const XP_BY_DIFF = { 'Easy': 12, 'Medium': 20, 'Hard': 34, 'Very Hard': 55 };
+      const QUESTION_BY_ID = new Map(questions.map((q) => [q.id, q]));
+
+      const state = {
+        view: 'home',
+        search: '',
+        theme: 'All',
+        difficulty: 'All',
+        sort: 'theme',
+        status: 'all', // all | done | undone
+        focusId: null
+      };
+
+      const el = {
+        navTabs: document.getElementById('navTabs'),
+        views: {
+          home: document.getElementById('view-home'),
+          courses: document.getElementById('view-courses'),
+          bank: document.getElementById('view-bank'),
+          analytics: document.getElementById('view-analytics')
+        },
+        miniTotal: document.getElementById('miniTotal'),
+        miniDone: document.getElementById('miniDone'),
+        miniLeft: document.getElementById('miniLeft'),
+        homeThemeButtons: document.getElementById('homeThemeButtons'),
+        searchInput: document.getElementById('searchInput'),
+        themeFilter: document.getElementById('themeFilter'),
+        difficultyFilter: document.getElementById('difficultyFilter'),
+        sortBy: document.getElementById('sortBy'),
+        clearFiltersBtn: document.getElementById('clearFiltersBtn'),
+        onlyUnsolvedBtn: document.getElementById('onlyUnsolvedBtn'),
+        onlyDoneBtn: document.getElementById('onlyDoneBtn'),
+        startPracticeBtn: document.getElementById('startPracticeBtn'),
+        showHardBtn: document.getElementById('showHardBtn'),
+        showUnsolvedBtn: document.getElementById('showUnsolvedBtn'),
+        recommendBtn: document.getElementById('recommendBtn'),
+        dopamineStats: document.getElementById('dopamineStats'),
+        levelFill: document.getElementById('levelFill'),
+        levelCaption: document.getElementById('levelCaption'),
+        recommendationBox: document.getElementById('recommendationBox'),
+        courseList: document.getElementById('courseList'),
+        questionList: document.getElementById('questionList'),
+        resultChip: document.getElementById('resultChip'),
+        analyticsOverview: document.getElementById('analyticsOverview'),
+        overallProgress: document.getElementById('overallProgress'),
+        difficultyBars: document.getElementById('difficultyBars'),
+        completionPie: document.getElementById('completionPie'),
+        completionPieLegend: document.getElementById('completionPieLegend'),
+        themeBars: document.getElementById('themeBars'),
+        resetProgressBtn: document.getElementById('resetProgressBtn'),
+        markVisibleDoneBtn: document.getElementById('markVisibleDoneBtn'),
+        toast: document.getElementById('toast'),
+        confettiLayer: document.getElementById('confettiLayer')
+      };
+
+      let progress = loadProgress();
+      let toastTimer = null;
+
+      function loadProgress() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return {};
+          const parsed = JSON.parse(raw);
+          return parsed && typeof parsed === 'object' ? parsed : {};
+        } catch (err) {
+          return {};
+        }
+      }
+
+      function saveProgress() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
+      }
+
+      function isDone(id) {
+        return !!(progress[id] && progress[id].done === true);
+      }
+
+      function setDone(id, done) {
+        if (done) {
+          progress[id] = { done: true, updatedAt: new Date().toISOString() };
+        } else {
+          delete progress[id];
+        }
+        saveProgress();
+      }
+
+      function setView(view) {
+        state.view = view;
+        Object.keys(el.views).forEach((key) => {
+          el.views[key].classList.toggle('active', key === view);
+        });
+
+        el.navTabs.querySelectorAll('button').forEach((btn) => {
+          btn.classList.toggle('active', btn.dataset.view === view);
+        });
+      }
+
+      function uniqueValues(key) {
+        return [...new Set(questions.map((q) => q[key]))].sort((a, b) => String(a).localeCompare(String(b)));
+      }
+
+      function buildSelect(selectEl, values, selected) {
+        const opts = ['<option value="All">All</option>'];
+        values.forEach((value) => {
+          const safe = escapeHtml(value);
+          const sel = value === selected ? ' selected' : '';
+          opts.push(`<option value="${safe}"${sel}>${safe}</option>`);
+        });
+        selectEl.innerHTML = opts.join('');
+      }
+
+      function escapeHtml(text) {
+        return String(text)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function diffClass(diff) {
+        return `diff-${String(diff).replace(/\s+/g, '')}`;
+      }
+
+      function dayKeyFromDate(dateObj) {
+        const y = dateObj.getFullYear();
+        const m = String(dateObj.getMonth() + 1).padStart(2, '0');
+        const d = String(dateObj.getDate()).padStart(2, '0');
+        return `${y}-${m}-${d}`;
+      }
+
+      function xpForLevel(level) {
+        if (level <= 1) return 0;
+        return 140 * (level - 1) * (level - 1);
+      }
+
+      function levelFromXp(xp) {
+        let level = 1;
+        while (xp >= xpForLevel(level + 1)) {
+          level += 1;
+        }
+        return level;
+      }
+
+      function getDopamineMetrics() {
+        let xp = 0;
+        const dayCounts = new Map();
+        let doneCount = 0;
+
+        Object.entries(progress).forEach(([id, info]) => {
+          if (!info || !info.done) return;
+          const q = QUESTION_BY_ID.get(id);
+          if (!q) return;
+          doneCount += 1;
+          xp += XP_BY_DIFF[q.difficulty] || 25;
+          if (info.updatedAt) {
+            const dt = new Date(info.updatedAt);
+            if (!Number.isNaN(dt.getTime())) {
+              const key = dayKeyFromDate(dt);
+              dayCounts.set(key, (dayCounts.get(key) || 0) + 1);
+            }
+          }
+        });
+
+        const todayKey = dayKeyFromDate(new Date());
+        const todayDone = dayCounts.get(todayKey) || 0;
+
+        let streak = 0;
+        const cursor = new Date();
+        cursor.setHours(0, 0, 0, 0);
+        while (dayCounts.has(dayKeyFromDate(cursor))) {
+          streak += 1;
+          cursor.setDate(cursor.getDate() - 1);
+        }
+
+        const level = levelFromXp(xp);
+        const currentFloor = xpForLevel(level);
+        const nextFloor = xpForLevel(level + 1);
+        const span = Math.max(1, nextFloor - currentFloor);
+        const levelPct = ((xp - currentFloor) / span) * 100;
+        const solvedPct = questions.length ? (doneCount / questions.length) * 100 : 0;
+
+        return { xp, level, levelPct, todayDone, streak, doneCount, solvedPct, nextFloor, currentFloor };
+      }
+
+      function showToast(message) {
+        if (!el.toast) return;
+        el.toast.textContent = message;
+        el.toast.classList.add('show');
+        if (toastTimer) clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => el.toast.classList.remove('show'), 1700);
+      }
+
+      function burstConfetti() {
+        const layer = el.confettiLayer;
+        if (!layer) return;
+        const colors = ['#0ea5a3', '#f97316', '#f59e0b', '#38bdf8', '#22c55e'];
+        const rect = layer.getBoundingClientRect();
+        const baseX = rect.width * 0.78;
+        const baseY = rect.height * 0.68;
+
+        for (let i = 0; i < 24; i += 1) {
+          const piece = document.createElement('span');
+          piece.className = 'confetti-piece';
+          piece.style.left = `${baseX + (Math.random() * 120 - 60)}px`;
+          piece.style.top = `${baseY + (Math.random() * 20 - 10)}px`;
+          piece.style.background = colors[i % colors.length];
+          piece.style.setProperty('--dx', `${Math.random() * 130 - 65}px`);
+          piece.style.animationDuration = `${700 + Math.random() * 500}ms`;
+          layer.appendChild(piece);
+          setTimeout(() => piece.remove(), 1300);
+        }
+      }
+
+      function renderDopaminePanel() {
+        const m = getDopamineMetrics();
+        const nextLevelXp = Math.max(0, m.nextFloor - m.xp);
+
+        if (el.dopamineStats) {
+          el.dopamineStats.innerHTML = `
+            <div class="dopamine-stat"><span class="label">Level</span><span class="value">${m.level}</span></div>
+            <div class="dopamine-stat"><span class="label">XP</span><span class="value">${m.xp}</span></div>
+            <div class="dopamine-stat"><span class="label">Streak</span><span class="value">${m.streak}d</span></div>
+            <div class="dopamine-stat"><span class="label">Today</span><span class="value">${m.todayDone}</span></div>
+          `;
+        }
+
+        if (el.levelFill) el.levelFill.style.width = `${Math.max(0, Math.min(100, m.levelPct)).toFixed(1)}%`;
+        if (el.levelCaption) {
+          el.levelCaption.textContent = `${m.solvedPct.toFixed(1)}% complete · ${nextLevelXp} XP to next level`;
+        }
+      }
+
+      function recommendNextQuestion() {
+        const undone = questions.filter((q) => !isDone(q.id));
+        if (!undone.length) return null;
+
+        const themeRows = summarizeBy('theme');
+        const themeGap = new Map();
+        themeRows.forEach((row) => {
+          themeGap.set(row.name, 1 - (row.total ? row.done / row.total : 0));
+        });
+
+        const diffWeight = { 'Easy': 0.45, 'Medium': 0.65, 'Hard': 0.86, 'Very Hard': 1.0 };
+        let best = null;
+
+        undone.forEach((q) => {
+          const gap = themeGap.get(q.theme) ?? 0.5;
+          const diff = diffWeight[q.difficulty] || 0.7;
+          const score = (0.58 * gap) + (0.34 * diff) + (Math.random() * 0.08);
+          if (!best || score > best.score) {
+            best = { q, score, gap, diff };
+          }
+        });
+        return best;
+      }
+
+      function renderRecommendation(rec) {
+        if (!el.recommendationBox) return;
+        if (!rec || !rec.q) {
+          el.recommendationBox.textContent = 'All questions are marked done. Reset progress or uncheck some to continue.';
+          return;
+        }
+        const gapPct = (rec.gap * 100).toFixed(0);
+        el.recommendationBox.innerHTML = `
+          <strong>${escapeHtml(rec.q.id)}</strong> · ${escapeHtml(rec.q.theme)} · ${escapeHtml(rec.q.difficulty)}<br />
+          Theme gap score: ${gapPct}% · prioritized by weakness + difficulty.<br />
+          <button class="btn" type="button" data-open-id="${escapeHtml(rec.q.id)}" style="margin-top:0.45rem;">Open This Question</button>
+        `;
+      }
+
+      function getFilteredQuestions() {
+        const s = state.search.trim().toLowerCase();
+        if (state.focusId) {
+          const exact = questions.find((q) => q.id === state.focusId);
+          return exact ? [exact] : [];
+        }
+
+        let list = questions.filter((q) => {
+          if (state.theme !== 'All' && q.theme !== state.theme) return false;
+          if (state.difficulty !== 'All' && q.difficulty !== state.difficulty) return false;
+          if (state.status === 'done' && !isDone(q.id)) return false;
+          if (state.status === 'undone' && isDone(q.id)) return false;
+          if (s) {
+            const hay = `${q.question_latex} ${q.theme}`.toLowerCase();
+            if (!hay.includes(s)) return false;
+          }
+          return true;
+        });
+
+        list = list.slice().sort((a, b) => {
+          if (state.sort === 'difficulty') {
+            const diffCmp = (DIFF_RANK[a.difficulty] || 9) - (DIFF_RANK[b.difficulty] || 9);
+            if (diffCmp !== 0) return diffCmp;
+            const themeCmp = a.theme.localeCompare(b.theme);
+            if (themeCmp !== 0) return themeCmp;
+            return a.id.localeCompare(b.id);
+          }
+
+          if (state.sort === 'id') {
+            return a.id.localeCompare(b.id);
+          }
+
+          const themeCmp = a.theme.localeCompare(b.theme);
+          if (themeCmp !== 0) return themeCmp;
+          const diffCmp = (DIFF_RANK[a.difficulty] || 9) - (DIFF_RANK[b.difficulty] || 9);
+          if (diffCmp !== 0) return diffCmp;
+          return a.id.localeCompare(b.id);
+        });
+
+        return list;
+      }
+
+      function renderQuestionList() {
+        const list = getFilteredQuestions();
+        el.resultChip.textContent = `${list.length} questions`;
+
+        if (!list.length) {
+          if (state.focusId) {
+            el.questionList.innerHTML = `<div class="empty">Question <span class="mono">${escapeHtml(state.focusId)}</span> was not found. Clear filters and try again.</div>`;
+          } else {
+            el.questionList.innerHTML = '<div class="empty">No questions match the current filters.</div>';
+          }
+          return;
+        }
+
+        el.questionList.innerHTML = list.map((q, index) => {
+          const checked = isDone(q.id) ? 'checked' : '';
+          const safeText = escapeHtml(q.question_latex);
+          const safeSolution = escapeHtml(q.solution_latex || 'No solution available.');
+          return `
+            <article class="question-card" style="animation-delay:${Math.min(index * 14, 180)}ms">
+              <div class="question-head">
+                <div class="meta">
+                  <span class="pill">${escapeHtml(q.id)}</span>
+                  <span class="pill">${escapeHtml(q.theme)}</span>
+                  <span class="pill ${diffClass(q.difficulty)}">${escapeHtml(q.difficulty)}</span>
+                </div>
+              </div>
+              <div class="qtext">
+                ${safeText}
+              </div>
+              <details class="solution-details">
+                <summary>Show Solution</summary>
+                <div class="solution-body">${safeSolution}</div>
+              </details>
+              <div class="card-actions">
+                <label class="done-toggle">
+                  <input type="checkbox" data-id="${escapeHtml(q.id)}" ${checked} />
+                  Mark done
+                </label>
+              </div>
+            </article>
+          `;
+        }).join('');
+
+      }
+
+      function countDone(list) {
+        return list.reduce((acc, q) => acc + (isDone(q.id) ? 1 : 0), 0);
+      }
+
+      function renderMiniStats() {
+        const total = questions.length;
+        const done = countDone(questions);
+        el.miniTotal.textContent = String(total);
+        el.miniDone.textContent = String(done);
+        el.miniLeft.textContent = String(total - done);
+      }
+
+      function renderHomeThemes() {
+        const byTheme = new Map();
+        questions.forEach((q) => {
+          byTheme.set(q.theme, (byTheme.get(q.theme) || 0) + 1);
+        });
+
+        const entries = [...byTheme.entries()].sort((a, b) => b[1] - a[1]);
+
+        el.homeThemeButtons.innerHTML = entries.map(([theme, count]) => `
+          <button type="button" data-theme="${escapeHtml(theme)}">
+            <span class="name">${escapeHtml(theme)}</span>
+            <span class="count">${count} questions</span>
+          </button>
+        `).join('');
+      }
+
+      function sortedCourseQuestions(theme) {
+        return questions
+          .filter((q) => q.theme === theme)
+          .slice()
+          .sort((a, b) => {
+            const d = (DIFF_RANK[a.difficulty] || 9) - (DIFF_RANK[b.difficulty] || 9);
+            if (d !== 0) return d;
+            return a.id.localeCompare(b.id);
+          });
+      }
+
+      function getCourses() {
+        const themes = uniqueValues('theme');
+        return themes.map((theme) => {
+          const qs = sortedCourseQuestions(theme);
+          const done = qs.filter((q) => isDone(q.id)).length;
+          const next = qs.find((q) => !isDone(q.id)) || null;
+          return {
+            theme,
+            total: qs.length,
+            done,
+            pct: qs.length ? (done / qs.length) * 100 : 0,
+            mastered: qs.length > 0 && done === qs.length,
+            next
+          };
+        });
+      }
+
+      function renderCourses() {
+        if (!el.courseList) return;
+        const courses = getCourses();
+        el.courseList.innerHTML = courses.map((c) => {
+          const badgeClass = c.mastered ? 'course-badge mastered' : 'course-badge';
+          const badgeLabel = c.mastered ? 'Mastered' : 'In Progress';
+          const nextBtn = c.next
+            ? `<button class="btn" type="button" data-course-open="${escapeHtml(c.next.id)}">Open Next (${escapeHtml(c.next.id)})</button>`
+            : '<button class="btn" type="button" disabled>All Done</button>';
+
+          return `
+            <article class="course-card">
+              <div class="course-head">
+                <div class="course-title">${escapeHtml(c.theme)}</div>
+                <span class="${badgeClass}">${badgeLabel}</span>
+              </div>
+              <div class="course-meta">${c.done}/${c.total} complete (${c.pct.toFixed(1)}%)</div>
+              <div class="bar"><div class="fill" style="width:${c.pct.toFixed(1)}%"></div></div>
+              <div class="course-actions">
+                <button class="btn primary" type="button" data-course-theme="${escapeHtml(c.theme)}">Start Course</button>
+                ${nextBtn}
+              </div>
+            </article>
+          `;
+        }).join('');
+      }
+
+      function summarizeBy(key) {
+        const bucket = new Map();
+        questions.forEach((q) => {
+          const name = q[key];
+          const entry = bucket.get(name) || { total: 0, done: 0 };
+          entry.total += 1;
+          if (isDone(q.id)) entry.done += 1;
+          bucket.set(name, entry);
+        });
+
+        return [...bucket.entries()].map(([name, value]) => {
+          const pct = value.total ? (value.done / value.total) * 100 : 0;
+          return { name, total: value.total, done: value.done, pct };
+        }).sort((a, b) => b.pct - a.pct || b.total - a.total);
+      }
+
+      function renderBars(target, rows, maxRows) {
+        const trimmed = rows.slice(0, maxRows);
+        if (!trimmed.length) {
+          target.innerHTML = '<div class="empty">No data</div>';
+          return;
+        }
+
+        target.innerHTML = trimmed.map((row) => {
+          const pct = row.pct.toFixed(1);
+          return `
+            <div class="bar-row">
+              <div class="name" title="${escapeHtml(row.name)}">${escapeHtml(row.name)}</div>
+              <div class="mono">${row.done}/${row.total} (${pct}%)</div>
+              <div class="bar"><div class="fill" style="width:${pct}%"></div></div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      function renderCompletionPie(done, remaining) {
+        const canvas = el.completionPie;
+        const legend = el.completionPieLegend;
+        if (!canvas || !legend) return;
+
+        const slices = [
+          { label: 'Done', value: done, color: '#0ea5a3' },
+          { label: 'Remaining', value: remaining, color: '#f97316' }
+        ];
+        const total = slices.reduce((acc, s) => acc + s.value, 0);
+
+        const dpr = Math.max(1, window.devicePixelRatio || 1);
+        const cssSize = Math.max(180, Math.min(230, canvas.clientWidth || 230));
+        canvas.width = Math.round(cssSize * dpr);
+        canvas.height = Math.round(cssSize * dpr);
+
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, cssSize, cssSize);
+
+        if (total <= 0) {
+          legend.innerHTML = '<div class="empty">No completion data yet.</div>';
+          return;
+        }
+
+        const cx = cssSize / 2;
+        const cy = cssSize / 2;
+        const radius = cssSize * 0.46;
+        const inner = radius * 0.58;
+
+        let angle = -Math.PI / 2;
+        slices.forEach((slice) => {
+          if (slice.value <= 0) return;
+          const portion = slice.value / total;
+          const next = angle + portion * Math.PI * 2;
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          ctx.arc(cx, cy, radius, angle, next);
+          ctx.closePath();
+          ctx.fillStyle = slice.color;
+          ctx.fill();
+          angle = next;
+        });
+
+        ctx.beginPath();
+        ctx.arc(cx, cy, inner, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+
+        const pct = ((done / total) * 100).toFixed(1);
+        ctx.fillStyle = '#102a43';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.font = '700 22px Space Grotesk';
+        ctx.fillText(`${pct}%`, cx, cy - 8);
+        ctx.fillStyle = '#52606d';
+        ctx.font = '600 11px IBM Plex Mono';
+        ctx.fillText('Completed', cx, cy + 13);
+
+        legend.innerHTML = slices.map((slice) => {
+          const pctPart = total ? ((slice.value / total) * 100).toFixed(1) : '0.0';
+          return `
+            <div class="pie-item">
+              <div class="pie-left">
+                <span class="swatch" style="background:${slice.color};"></span>
+                <span>${escapeHtml(slice.label)}</span>
+              </div>
+              <span class="mono">${slice.value} (${pctPart}%)</span>
+            </div>
+          `;
+        }).join('');
+      }
+
+      function renderAnalytics() {
+        const total = questions.length;
+        const done = countDone(questions);
+        const left = total - done;
+        const pct = total ? (done / total) * 100 : 0;
+
+        el.analyticsOverview.innerHTML = `
+          <div class="metric"><span class="label">Total</span><span class="value">${total}</span></div>
+          <div class="metric"><span class="label">Done</span><span class="value">${done}</span></div>
+          <div class="metric"><span class="label">Remaining</span><span class="value">${left}</span></div>
+        `;
+
+        el.overallProgress.style.width = `${pct.toFixed(1)}%`;
+
+        const byDifficulty = summarizeBy('difficulty').sort((a, b) => (DIFF_RANK[a.name] || 9) - (DIFF_RANK[b.name] || 9));
+        const byTheme = summarizeBy('theme');
+
+        renderBars(el.difficultyBars, byDifficulty, 12);
+        renderCompletionPie(done, left);
+        renderBars(el.themeBars, byTheme, 24);
+      }
+
+      function syncControls() {
+        el.searchInput.value = state.search;
+        el.themeFilter.value = state.theme;
+        el.difficultyFilter.value = state.difficulty;
+        el.sortBy.value = state.sort;
+      }
+
+      function fullRender() {
+        renderMiniStats();
+        renderCourses();
+        renderQuestionList();
+        renderAnalytics();
+        renderDopaminePanel();
+      }
+
+      function initFilters() {
+        buildSelect(el.themeFilter, uniqueValues('theme'), state.theme);
+      }
+
+      function clearFilters() {
+        state.search = '';
+        state.theme = 'All';
+        state.difficulty = 'All';
+        state.sort = 'theme';
+        state.status = 'all';
+        state.focusId = null;
+        syncControls();
+      }
+
+      el.navTabs.addEventListener('click', function (evt) {
+        const btn = evt.target.closest('button[data-view]');
+        if (!btn) return;
+        setView(btn.dataset.view);
+      });
+
+      el.searchInput.addEventListener('input', function (evt) {
+        state.search = evt.target.value;
+        state.focusId = null;
+        renderQuestionList();
+      });
+
+      el.themeFilter.addEventListener('change', function (evt) {
+        state.theme = evt.target.value;
+        state.focusId = null;
+        renderQuestionList();
+      });
+
+      el.difficultyFilter.addEventListener('change', function (evt) {
+        state.difficulty = evt.target.value;
+        state.focusId = null;
+        renderQuestionList();
+      });
+
+      el.sortBy.addEventListener('change', function (evt) {
+        state.sort = evt.target.value;
+        state.focusId = null;
+        renderQuestionList();
+      });
+
+      el.clearFiltersBtn.addEventListener('click', function () {
+        clearFilters();
+        fullRender();
+      });
+
+      el.onlyUnsolvedBtn.addEventListener('click', function () {
+        state.status = 'undone';
+        renderQuestionList();
+      });
+
+      el.onlyDoneBtn.addEventListener('click', function () {
+        state.status = 'done';
+        renderQuestionList();
+      });
+
+      el.startPracticeBtn.addEventListener('click', function () {
+        clearFilters();
+        setView('bank');
+        fullRender();
+      });
+
+      el.showHardBtn.addEventListener('click', function () {
+        clearFilters();
+        state.difficulty = 'Very Hard';
+        syncControls();
+        setView('bank');
+        renderQuestionList();
+      });
+
+      el.showUnsolvedBtn.addEventListener('click', function () {
+        clearFilters();
+        state.status = 'undone';
+        setView('bank');
+        renderQuestionList();
+      });
+
+      el.recommendBtn.addEventListener('click', function () {
+        const rec = recommendNextQuestion();
+        renderRecommendation(rec);
+        if (rec && rec.q) {
+          showToast(`Recommendation ready: ${rec.q.id} (${rec.q.difficulty})`);
+        }
+      });
+
+      if (el.recommendationBox) {
+        el.recommendationBox.addEventListener('click', function (evt) {
+          const btn = evt.target.closest('button[data-open-id]');
+          if (!btn) return;
+          const id = btn.dataset.openId;
+          if (!id) return;
+          const exists = QUESTION_BY_ID.has(id);
+          if (!exists) {
+            showToast(`Question ${id} does not exist in current dataset.`);
+            return;
+          }
+          clearFilters();
+          state.focusId = id;
+          syncControls();
+          setView('bank');
+          renderQuestionList();
+        });
+      }
+
+      el.homeThemeButtons.addEventListener('click', function (evt) {
+        const btn = evt.target.closest('button[data-theme]');
+        if (!btn) return;
+        clearFilters();
+        state.theme = btn.dataset.theme;
+        state.status = 'all';
+        syncControls();
+        setView('bank');
+        renderQuestionList();
+      });
+
+      if (el.courseList) {
+        el.courseList.addEventListener('click', function (evt) {
+          const startBtn = evt.target.closest('button[data-course-theme]');
+          if (startBtn) {
+            clearFilters();
+            state.theme = startBtn.dataset.courseTheme || 'All';
+            state.sort = 'difficulty';
+            state.status = 'all';
+            state.focusId = null;
+            syncControls();
+            setView('bank');
+            renderQuestionList();
+            showToast(`Course started: ${state.theme}`);
+            return;
+          }
+
+          const openBtn = evt.target.closest('button[data-course-open]');
+          if (openBtn) {
+            const id = openBtn.dataset.courseOpen;
+            if (!id || !QUESTION_BY_ID.has(id)) {
+              showToast('Next question could not be found.');
+              return;
+            }
+            clearFilters();
+            state.focusId = id;
+            syncControls();
+            setView('bank');
+            renderQuestionList();
+          }
+        });
+      }
+
+      el.questionList.addEventListener('change', function (evt) {
+        const input = evt.target;
+        if (!(input instanceof HTMLInputElement)) return;
+        if (input.type !== 'checkbox' || !input.dataset.id) return;
+        const id = input.dataset.id;
+        const wasDone = isDone(id);
+        setDone(input.dataset.id, input.checked);
+        renderMiniStats();
+        renderAnalytics();
+        renderDopaminePanel();
+        renderRecommendation(recommendNextQuestion());
+
+        if (input.checked && !wasDone) {
+          const q = QUESTION_BY_ID.get(id);
+          const gained = q ? (XP_BY_DIFF[q.difficulty] || 25) : 25;
+          const m = getDopamineMetrics();
+          showToast(`+${gained} XP · ${m.streak}d streak · ${m.doneCount}/${questions.length} complete`);
+          burstConfetti();
+        } else if (!input.checked && wasDone) {
+          showToast('Marked as not done.');
+        }
+      });
+
+      el.resetProgressBtn.addEventListener('click', function () {
+        const confirmed = window.confirm('Reset all completion progress?');
+        if (!confirmed) return;
+        progress = {};
+        saveProgress();
+        fullRender();
+        renderRecommendation(recommendNextQuestion());
+        showToast('Progress reset.');
+      });
+
+      el.markVisibleDoneBtn.addEventListener('click', function () {
+        const visible = getFilteredQuestions();
+        let newlyDone = 0;
+        visible.forEach((q) => {
+          if (!isDone(q.id)) newlyDone += 1;
+          setDone(q.id, true);
+        });
+        fullRender();
+        renderRecommendation(recommendNextQuestion());
+        if (newlyDone > 0) {
+          showToast(`Momentum boost: ${newlyDone} questions completed.`);
+          burstConfetti();
+        }
+      });
+
+      if (!questions.length) {
+        el.views.home.innerHTML = '<div class="panel"><p>No question data loaded. Make sure <span class="mono">questions-data.js</span> exists in this folder.</p></div>';
+        return;
+      }
+
+      initFilters();
+      renderHomeThemes();
+      syncControls();
+      fullRender();
+      renderRecommendation(recommendNextQuestion());
+      setView('home');
+    })();
+  </script>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <div id="confettiLayer" class="confetti-layer" aria-hidden="true"></div>
+</body>
+</html>
